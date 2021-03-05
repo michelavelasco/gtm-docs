@@ -245,10 +245,10 @@ Triggers on [TresureData Email Hash](#tresuredata-email-hash-trigger)
 </script>
 ```
 
-## TreasureData Get Email Hash Tag
+## TreasureData - Set Permutive email_sha256 to TD User Segment
 
-Calls TreasureData with the permutive id to get the email hash and fire the
-[TresureData Email Hash](#tresuredata-email-hash-trigger) custom event.
+Calls TreasureData with the permutive id to get the email-sha and fire the
+[TresureData Email Hash](#tresuredata-email-hash-trigger) custom event. This sends both email_sha and permutiveid to TD for the market master segment. Please note that each market has a different YOUR_PROFILES_API_TOKEN to drop in place of the temp key
 
 Triggers on [Permutive Ready](#permutive-ready-trigger)
 
@@ -273,8 +273,8 @@ Triggers on [Permutive Ready](#permutive-ready-trigger)
       console.log(err);
     }
     td.fetchUserSegments({
-      audienceToken: {{TreasureData Write Key}},
-      keys: {"permutive_id": {{Permutive User Id}}}
+      audienceToken: {{YOUR_PROFILES_API_TOKEN}},
+      keys: {"permutiveid": {{Permutive User Id}}}
     }, success, error);
   })(window, {{TreasureData Instance Name}});
 </script>
