@@ -223,7 +223,20 @@ Triggers on
   })(window, document, {{TreasureData Instance Name}});
 </script>
 ```
+## Get GA_Client_ID
 
+Get's GA ID to send to Treasure Data database assigned in the pageview tag
+
+```html
+<script>
+ga(function(){
+    var gaId = "";
+    var trackers = ga.getAll();
+    if (trackers && trackers[0]) {
+      gaId = trackers[0].get('clientId');
+    } 
+</script>
+```
 ## Permutive Set Email Hash Tag
 
 Calls Permutive `identify` to pass the email hash.
