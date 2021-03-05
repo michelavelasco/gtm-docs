@@ -126,7 +126,18 @@ Triggers on **Page View**
   })(window, document, {{TreasureData Instance Name}});
 </script>
 ```
+## Getting GA_Client_ID to send to Treasure Data 
 
+```html
+<script>
+ga(function(){
+    var gaId = "";
+    var trackers = ga.getAll();
+    if (trackers && trackers[0]) {
+      gaId = trackers[0].get('clientId');
+    }
+</script>
+```
 ## Permutive Ready Tag
 
 Waits for permutive to be ready and then pushes the permutive user id into the
@@ -245,10 +256,10 @@ Triggers on [TresureData Email Hash](#tresuredata-email-hash-trigger)
 </script>
 ```
 
-## TreasureData Get Email Hash Tag
+## Custom HTML - TreasureData - Set Permutive email_sha256 to TD User Segment
 
 Calls TreasureData with the permutive id to get the email hash and fire the
-[TresureData Email Hash](#tresuredata-email-hash-trigger) custom event.
+[TresureData Email Hash](#tresuredata-email-hash-trigger) custom event. Then pushes email_sha to treasure data matched with permutive id
 
 Triggers on [Permutive Ready](#permutive-ready-trigger)
 
@@ -273,8 +284,8 @@ Triggers on [Permutive Ready](#permutive-ready-trigger)
       console.log(err);
     }
     td.fetchUserSegments({
-      audienceToken: {{TreasureData Write Key}},
-      keys: {"permutive_id": {{Permutive User Id}}}
+      audienceToken: {{YOUR_PROFILES_API_TOKEN}},
+      keys: {"permutiveid": {{Permutive User Id}}}
     }, success, error);
   })(window, {{TreasureData Instance Name}});
 </script>
